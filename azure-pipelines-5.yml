@@ -1,0 +1,18 @@
+trigger:
+- main
+
+pool:
+  name: Default  # your local agent pool name
+
+steps:
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'myapp/pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'Path'              # Use a manually specified path
+    jdkDirectory: 'C:\\Java\\jdk-22'    # Use double backslashes on Windows
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'package'
+
